@@ -28,13 +28,13 @@ class MyClient(discord.Client):
         if message.content.startswith('!main'):
             #Forneça as informações corretas
             try:
-                summoner_name = message.content.split('!main')[1].strip() #Essa linha funciona como um input para pegar o nome do invocador
+                summoner_name = message.content.split('!main')[1].strip() #Essa linha funciona como uma especie de "input" para pegar o nome do invocador
                 summoner = watcher.summoner.by_name(regiao, summoner_name)
                 puuid = summoner['puuid'] #Pega o PUUID do invocador
                 champion_response = requests.get(f'{base_url2}/lol/champion-mastery/v4/champion-masteries/by-puuid/{puuid}', headers=headers)
-                champion_data = champion_response.json() # Extrai as 5 primeiras datas consultadas
-                champions_maestry = []
-                champion_icon = []
+                champion_data = champion_response.json() # Extrai as datas consultadas
+                champions_maestry = [] # Lista para armazenar campeões e maestria
+                champion_icon = [] # Lista para armazenar icone dos campeões
 
 
                 for maestry_champions in champion_data:
